@@ -12,9 +12,21 @@ class CodingChallenge:
         print("\033[1;32m=== PYTHON CODE WARRIOR ===\033[0m")
         print("Choose difficulty:")
         print("1. Easy\n2. Medium\n3. Hard")
+        print("\033[90m(Press Ctrl+C at any time to exit)\033[0m")
         choice = input("Enter choice (1-3): ").strip()
         self.difficulty = ['easy', 'medium', 'hard'][int(choice)-1] if choice in ['1','2','3'] else 'easy'
         self.generate_challenges()
+
+    def display_code(self, code):
+        print("\033[36m" + code + "\033[0m")
+
+    def run_tests(self, user_code, challenge):
+        try:
+            exec(user_code, {})
+            return True
+        except Exception as e:
+            print(f"\033[91mError: {str(e)}\033[0m")
+            return False
 
     def generate_challenges(self):
         # Basic challenge setup (customize as needed)
@@ -31,23 +43,14 @@ class CodingChallenge:
             })
         self.challenges = random.sample(base_challenges, 10)
 
-    def display_code(self, code):
-        print("\033[36m" + code + "\033[0m")
-
-    def run_tests(self, user_code, challenge):
-        try:
-            exec(user_code, {})
-            return True
-        except Exception as e:
-            print(f"\033[91mError: {str(e)}\033[0m")
-            return False
-
     def show_tutorial(self):
+        # Tutorial code remains the same
         print("\033[1;36m" + "="*40 + "\033[0m")
         print("\033[1;36m        HOW TO PLAY\033[0m")
         print("\033[1;36m" + "="*40 + "\033[0m")
         print("\n\033[96mWelcome to Python Code Warrior!\033[0m")
         print("You'll be given coding challenges to solve.")
+        print("\033[90m(Press Ctrl+C at any time to exit)\033[0m")  # Add exit notice
         print("Here's what you need to know:\n")
         
         print("\033[93m1. Challenge Types:\033[0m")
@@ -102,6 +105,7 @@ class CodingChallenge:
 
     def start(self):
         print("\033[1;32m=== PYTHON CODE WARRIOR ===\033[0m")
+        print("\033[90m(Press Ctrl+C at any time to exit)\033[0m")
         if input("Show tutorial? (y/n): ").lower() == 'y':
             self.show_tutorial()
         self.choose_difficulty()
@@ -126,11 +130,20 @@ class CodingChallenge:
                     break
                 else:
                     print("\033[91m✘ Tests failed!\033[0m")
-                    if input("\033[90mHint? (y/n): \033[0m").lower() == 'y':
+                    hint_response = input("\033[90mHint? (y/n): \033[0m").lower()
+                    if hint_response == 'y':
                         print(f"\033[93m💡 {challenge['hint']}\033[0m")
         
         print(f"\n\033[1;35m🏆 Final Score: {self.score}\033[0m")
 
 if __name__ == "__main__":
-    game = CodingChallenge()
-    game.start()
+    try:
+        game = CodingChallenge()
+        game.start()
+    except KeyboardInterrupt:
+        print("\n\033[91mProgram terminated. Thanks for playing!\033[0m")
+    except Exception as e:
+        print(f"\033[91mAn error occurred: {str(e)}\033[0m")
+    finally:
+        # Clean up if needed
+        pass
