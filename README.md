@@ -17,12 +17,9 @@ Interactive Gameplay: Engage in hacking challenges, terminal-based puzzles, and 
 
 
 
-Cross-Platform Compatibility: Built to run on any system with a terminal, including Linux, macOS, and Windows.
+Cross-Platform Compatibility: Built to run on any system with a terminal, including Linux, macOS, and Windows by only using python.
 
 
 
 Customizable Experience: Modular design allows players to tweak game settings or contribute to new features.
 
-The project is open-source, encouraging contributions from the community to enhance gameplay, add new levels, or integrate additional features. Whether you're a coder looking to contribute or a gamer seeking a unique terminal adventure, Terminal-Takedown offers a thrilling dive into the world of command-line gaming.
-
-Check out the repository for installation instructions, gameplay guides, and contribution guidelines: https://github.com/Mrjam007/Terminal-Takedown.
